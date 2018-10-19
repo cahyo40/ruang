@@ -3,9 +3,7 @@
 Route::get('/', function () {
     return view('home.index');
 });
-Route::get('/login', function () {
-    return view('home.login');
-});
+Route::get('/login', 'PenggunaController@logins');
 Route::post('/login','PenggunaController@login')->name('prosesLogin');
 Route::get('/home/keluar','PenggunaController@keluar')->name('logout');
 

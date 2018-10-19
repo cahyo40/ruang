@@ -10,6 +10,15 @@ use Illuminate\Support\Facades\Hash;
 
 class PenggunaController extends Controller
 {
+    public function logins()
+    {
+        $pengguna = Pengguna::where('remember_token',csrf_token())->get();
+        if(count($pengguna)== 1){
+            return redirect('home/'.csrf_token());
+        }else{
+            return view('home.login');
+        }
+    }
     public function login(Request $request)
     {
         $username   =   $request['username'];
