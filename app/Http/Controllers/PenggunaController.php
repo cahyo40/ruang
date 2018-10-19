@@ -60,7 +60,9 @@ class PenggunaController extends Controller
         $data = [
             'nama'      =>  session('nama'),
             'username'  =>  session('username'),
-            'role'      =>  session('role')
+            'role'      =>  session('role'),
+            'ruang'     =>  Ruang::get(),
+            'pinjam'    =>  PinjamRuang::get(),
         ];
         return view('dashboard/home',$data);
         }
@@ -95,7 +97,8 @@ class PenggunaController extends Controller
             'username'  =>  session('username'),
             'role'      =>  session('role'),
             'ruang'     =>  Ruang::get(),
-            'mahasiswa' =>  Pengguna::where('role','mahasiswa')->get()
+            'mahasiswa' =>  Pengguna::where('role','mahasiswa')->get(),
+            'dosen'     =>  Pengguna::where('role','dosen')->get()
         ];
         return view('dashboard/admin/peminjam',$data);
         }
@@ -110,7 +113,7 @@ class PenggunaController extends Controller
             'nama'      =>  session('nama'),
             'username'  =>  session('username'),
             'role'      =>  session('role'),
-            'ruang'     =>  Ruang::get()
+            'ruang'     =>  Ruang::get(),
         ];
         return view('dashboard/admin/jadwal',$data);
         }

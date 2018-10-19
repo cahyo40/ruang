@@ -24,7 +24,7 @@
 </div>
 <div class="col-lg-12 col-md-12 col-sm-12 mb-30">
     <div class="pd-20 bg-white border-radius-4 box-shadow">
-        <h5 class="weight-500 mb-20">Customtab Tab</h5>
+        <h5 class="weight-500 mb-20">Penjadwalan Ruang</h5>
         <div class="tab">
             <ul class="nav nav-tabs customtab" role="tablist">
                 <li class="nav-item">
@@ -96,4 +96,3 @@
     </div>
 </div>
 @endsection
-

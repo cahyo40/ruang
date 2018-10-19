@@ -55,62 +55,60 @@
         </div>
     </div>
 </div>
-<div style="margin-top:60px;" class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-        <div id="kalendar"></div>
-    </div>
+<div style="margin-top:30px">
+    <table id="ruang" class="data-table stripe hover nowrap">
+        <thead>
+            <tr>
+                <th>Kode Kelas</th>
+                <th>Keterangan</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($ruang as $ruang)
+            <tr>
+                <td>{{$ruang->kode_ruang}}</td>
+                <td>{{$ruang->keterangan}}</td>
+                <td>
+                    <div class="dropdown">
+                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                            <i class="fa fa-ellipsis-h"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
+                            <a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Hapus</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Kode Kelas</th>
+                <th>Keterangan</th>
+                <th>Aksi</th>
+            </tr>
+        </tfoot>
+    </table>
 </div>
-<div id="app">
-
-</div>
-
 @section('css')
-    <link rel="stylesheet" type="text/css" href="{{url('dashboard/src/plugins/fullcalendar/fullcalendar.css')}}">
-    <link rel="stylesheet" type="text/css" href="{{url('dashboard/src/plugins/fullcalendar/jadwal.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url('dashboard/src/plugins/datatables/media/css/jquery.dataTables.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url('dashboard/src/plugins/datatables/media/css/dataTables.bootstrap4.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url('dashboard/src/plugins/datatables/media/css/responsive.dataTables.css')}}">
 @endsection
 @section('script')
-    <script src="{{url('dashboard/src/plugins/fullcalendar/lib/jquery-ui.min.js')}}"></script>
-	<script src="{{url('dashboard/src/plugins/fullcalendar/fullcalendar.min.js')}}"></script>
-    <script src="{{url('dashboard/src/plugins/fullcalendar/jadwal.min.js')}}"></script>
-    <script src="{{url('dashboard/src/plugins/fullcalendar/locale-all.js')}}"></script>
+	<script src="vendors/scripts/script.js"></script>	<script src="{{url('dashboard/src/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{url('dashboard/src/plugins/datatables/media/js/dataTables.bootstrap4.js')}}"></script>
+	<script src="{{url('dashboard/src/plugins/datatables/media/js/dataTables.responsive.js')}}"></script>
+	<script src="{{url('dashboard/src/plugins/datatables/media/js/responsive.bootstrap4.js')}}"></script>
     <script>
-        $(function(){
-            var initialLocaleCode = 'id';
-            $('#kalendar').fullCalendar({
-            locale: initialLocaleCode,
-            schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-            defaultView: 'agendaWeek',
-            defaultDate: '{{date('Y-m-d')}}',
-             scrollTime: '05:00',
-            // editable: true,
-            aspectRatio: 2.7,
-            navLinks: true,
-            selectable: true,
-            eventLimit: true, // allow "more" link when too many events
-             header: {
-                left: 'today prev,next',
-                center: 'title',
-                right: 'agendaWeek,month,listWeek'
-            },
-            views: {
-                agendaTwoDay: {
-                type: 'timeline',
-                groupByResource: true
-                }
-            },
-            resourceLabelText: 'Ruang Kuliah di Teknik Komputer',
-            resources: [
-                @foreach($ruang as $ruang)
-                    {id : '{{$ruang->kode_ruang}}',title:'{{$ruang->kode_ruang}}',color:'{{$ruang->warna}}'},
-                @endforeach
-            ],
-            events: [
-                @foreach($pinjam as $pinjam)
-                {id : '{{$pinjam->kode_pinjam}}',resourceId:'{{$pinjam->kode_ruang}}',start:'{{$pinjam->tgl_pinjam}}T{{$pinjam->waktu_mulai}}',end:'{{$pinjam->tgl_pinjam}}T{{$pinjam->waktu_akhir}}',title:'{!!$pinjam->keterangan!!}'},
-                @endforeach
-            ],
+        $(document).ready( function () {
+            $('#ruang').DataTable({
+                scrollCollapse: true,
+                autoWidth: false,
+                responsive: true,
             });
-        });
+        } );
     </script>
 @endsection

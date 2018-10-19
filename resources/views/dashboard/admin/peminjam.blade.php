@@ -22,47 +22,75 @@
         </nav>
     </div>
 </div>
-<center><h3>Daftar Mahasiswa</h3></center>
-<div class="row">
-    <table id="mahasiswa" class="data-table stripe hover nowrap">
-        <thead>
-            <tr>
-                <th>NIM</th>
-                <th>Nama</th>
-                <th>Alamat</th>
-                <th>Aksi</th>
-            </tr>
-        </thead>
-        <tbody>
-        @foreach($mahasiswa as $mahasiswa)
-            <tr>
-                <td>{{$mahasiswa->username}}</td>
-                <td>{{$mahasiswa->nama}}</td>
-                <td>{{$mahasiswa->email}}</td>
-                <td>
-                    <div class="dropdown">
-                        <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
-                            <i class="fa fa-ellipsis-h"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#"><i class="fa fa-eye"></i> {{$mahasiswa->username}}</a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
-                            <a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Delete</a>
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
-        <tfoot>
-            <tr>
-                <th>NIM</th>
-                <th>Nama</th>
-                <th>Alamat</th>
-                <th>Aksi</th>
-            </tr>
-        </tfoot>
-    </table>
+<div class="tab">
+    <ul class="nav nav-tabs customtab" role="tablist">
+        <li>
+            <a href="#mahasiswa" class="nav-link active" data-toggle="tab" role="tab" aria-selected="false">
+                Daftar Mahasiswa
+            </a>
+        </li>
+        <li>
+            <a href="#dosen" class="nav-link" data-toggle="tab" role="tab" aria-selected="false">
+                Daftar Dosen
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="mahasiswa" role="tabpane1">
+            <div class="pd-20">
+                <h3 align="center">DAFTAR MAHASISWA</h3>
+                <table id="daftarMHS" class="data-table stripe hover nowrap">
+                    <thead>
+                        <tr>
+                            <th>NIM</th>
+                            <th>Nama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($mahasiswa as $mahasiswa)
+                        <tr>
+                            <td>{{$mahasiswa->username}}</td>
+                            <td>{{$mahasiswa->nama}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Kode Kelas</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="tab-pane fade show " id="dosen" role="tabpane1">
+            <div class="pd-20">
+                <h3 align="center">DAFTAR DOSEN</h3>
+                <table id="dftrDosen" class="data-table stripe hover nowrap">
+                    <thead>
+                        <tr>
+                            <th>NIK</th>
+                            <th>Nama</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($dosen as $dosen)
+                        <tr>
+                            <td>{{$dosen->username}}</td>
+                            <td>{{$dosen->nama}}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Kode Kelas</th>
+                            <th>Keterangan</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 @section('css')
@@ -77,7 +105,14 @@
 	<script src="{{url('dashboard/src/plugins/datatables/media/js/responsive.bootstrap4.js')}}"></script>
     <script>
         $(document).ready( function () {
-            $('#mahasiswa').DataTable({
+            $('#daftarMHS').DataTable({
+                scrollCollapse: true,
+                autoWidth: false,
+                responsive: true,
+            });
+        } );
+        $(document).ready( function () {
+            $('#dftrDosen').DataTable({
                 scrollCollapse: true,
                 autoWidth: false,
                 responsive: true,
