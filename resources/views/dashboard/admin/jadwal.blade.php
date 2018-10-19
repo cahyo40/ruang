@@ -46,7 +46,38 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="home2" role="tabpanel">
                     <div class="pd-20">
-                        <h1>Daftar</h1>
+                        <table id="jdwl">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Ruang</th>
+                                    <th>Peminjam</th>
+                                    <th>Waktu</th>
+                                    <th>Detail</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                                @foreach($jadwal as $a)
+                                    <td>{{$no++}}</td>
+                                    <td>{{$a->kode_ruang}}</td>
+                                    <td>{{$a->username}}</td>
+                                    <td>{{$a->tgl_pinjam}}</td>
+                                    <td>Detail</td>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Ruang</th>
+                                    <th>Peminjam</th>
+                                    <th>Waktu</th>
+                                    <th>Detail</th>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="profile2" role="tabpanel">
@@ -95,4 +126,31 @@
         </div>
     </div>
 </div>
+@endsection
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{url('dashboard/src/plugins/datatables/media/css/jquery.dataTables.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url('dashboard/src/plugins/datatables/media/css/dataTables.bootstrap4.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url('dashboard/src/plugins/datatables/media/css/responsive.dataTables.css')}}">
+@endsection
+@section('script')
+	<script src="vendors/scripts/script.js"></script>	<script src="{{url('dashboard/src/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{url('dashboard/src/plugins/datatables/media/js/dataTables.bootstrap4.js')}}"></script>
+	<script src="{{url('dashboard/src/plugins/datatables/media/js/dataTables.responsive.js')}}"></script>
+	<script src="{{url('dashboard/src/plugins/datatables/media/js/responsive.bootstrap4.js')}}"></script>
+    <script>
+        $(document).ready( function () {
+            $('#jdwl').DataTable({
+                scrollCollapse: true,
+                autoWidth: false,
+                responsive: true,
+            });
+        } );
+        $(document).ready( function () {
+            $('#jdwled').DataTable({
+                scrollCollapse: true,
+                autoWidth: false,
+                responsive: true,
+            });
+        } );
+    </script>
 @endsection

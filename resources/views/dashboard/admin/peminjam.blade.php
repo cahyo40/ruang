@@ -12,6 +12,7 @@
 @section('konten')
 @php
 $no = 1;
+$nod = 1;
 @endphp
 <div class="row">
     <div class="col-md-12 col-sm-12">
@@ -75,6 +76,7 @@ $no = 1;
                 <table id="dftrDosen" class="data-table stripe hover nowrap">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>NIK</th>
                             <th>Nama</th>
                         </tr>
@@ -82,6 +84,7 @@ $no = 1;
                     <tbody>
                     @foreach($dosen as $dosen)
                         <tr>
+                            <td>{{$nod++}}</td>
                             <td>{{$dosen->username}}</td>
                             <td>{{$dosen->nama}}</td>
                         </tr>
@@ -89,6 +92,7 @@ $no = 1;
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>No</th>
                             <th>Kode Kelas</th>
                             <th>Keterangan</th>
                         </tr>

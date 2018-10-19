@@ -114,6 +114,8 @@ class PenggunaController extends Controller
             'username'  =>  session('username'),
             'role'      =>  session('role'),
             'ruang'     =>  Ruang::get(),
+            'jadwal'    =>  PinjamRuang::get(),
+
         ];
         return view('dashboard/admin/jadwal',$data);
         }
@@ -127,6 +129,7 @@ class PenggunaController extends Controller
             $token          =   $request['_token'];
             Ruang::create([
                 'kode_ruang'    =>  $kode_ruang,
+                'warna'         =>  $request['warna'],
                 'keterangan'    =>  $keterangan
             ]);
             return redirect()->back()->with('sukses','Penambahan Ruang Kelas Berhasil');
