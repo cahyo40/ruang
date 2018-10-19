@@ -10,6 +10,9 @@
     @include('dashboard.admin.sidebar')
 @endsection
 @section('konten')
+@php
+$no = 1;
+@endphp
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="title">
@@ -42,6 +45,7 @@
                 <table id="daftarMHS" class="data-table stripe hover nowrap">
                     <thead>
                         <tr>
+                            <th>No</th>
                             <th>NIM</th>
                             <th>Nama</th>
                         </tr>
@@ -49,6 +53,7 @@
                     <tbody>
                     @foreach($mahasiswa as $mahasiswa)
                         <tr>
+                            <td>{{$no++}}</td>
                             <td>{{$mahasiswa->username}}</td>
                             <td>{{$mahasiswa->nama}}</td>
                         </tr>
@@ -56,6 +61,7 @@
                     </tbody>
                     <tfoot>
                         <tr>
+                            <th>No</th>
                             <th>Kode Kelas</th>
                             <th>Keterangan</th>
                         </tr>
