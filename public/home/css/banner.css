@@ -1,0 +1,28 @@
+.common_breadcrumb{
+    background: url(../images/breadcumb.jpg) no-repeat center center / cover;
+}
+.common_breadcrumb .overlay{
+    background: rgba(0,0,0,0.6);
+}
+.breadcrumbs_content{
+    min-height: 350px;
+}
+
+
+/* ====================Tab Screen==============*/
+@media (max-width: 991px) {
+    .breadcrumbs_content {
+        min-height: 250px;
+    }
+    
+}
+@media (max-width: 767px) {
+    .breadcrumbs_content {
+        min-height: 200px;
+    }
+    .common_breadcrumb .breadcrumbs_content h2 {
+        font-size: 30px;
+        line-height: 30px;
+    }
+    
+}/*--end media query 768-991px--*/

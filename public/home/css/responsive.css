@@ -1,0 +1,29 @@
+/************************************************
+[Responsive Stylesheet]
+*************************************************/
+
+
+@media (min-width: 1200px) {}
+
+/* ================Large Display==============*/
+@media (max-width: 1199px) {
+    
+}/*--end media query 992-1199px--*/
+
+
+/* ====================Tab Screen==============*/
+@media (max-width: 991px) {
+    
+}/*--end media query 768-991px--*/
+
+
+/* ===================Medium Mobile Screen==============*/
+@media (max-width: 767px) {
+    
+}/*--end media query 480-767px--*/
+
+
+/* ==================Small Mobile Display==============*/
+@media (max-width: 479px) {
+    
+}/*--end media query 0-479px--*/
