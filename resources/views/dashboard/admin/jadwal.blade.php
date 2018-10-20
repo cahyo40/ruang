@@ -37,11 +37,6 @@
                         Tambah Jadwal Penggunaan Ruang
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#profile3" role="tab" aria-selected="false">
-                        Kelola Jadwal Penggunaan Ruang
-                    </a>
-                </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="home2" role="tabpanel">
@@ -54,6 +49,7 @@
                                     <th>Peminjam</th>
                                     <th>Waktu</th>
                                     <th>Detail</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,6 +62,17 @@
                                     <td>{{$a->username}}</td>
                                     <td>{{$a->tgl_pinjam}}</td>
                                     <td>Detail</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
+                                                <a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Hapus</a>
+                                            </div>
+                                        </div>
+                                    </td>
                                 @endforeach
                             </tbody>
                             <tfoot>
@@ -75,6 +82,7 @@
                                     <th>Peminjam</th>
                                     <th>Waktu</th>
                                     <th>Detail</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </tfoot>
                         </table>
@@ -117,10 +125,6 @@
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="profile3" role="tabpanel">
-                    <div class="pd-20">
-                        <h1>Kelola</h1>
-                    </div>
                 </div>
             </div>
         </div>
