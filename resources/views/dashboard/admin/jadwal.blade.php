@@ -41,13 +41,13 @@
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="home2" role="tabpanel">
                     <div class="pd-20">
-                        <table id="jdwl">
+                        <table id="jdwl" class="table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>No</th>
                                     <th>Ruang</th>
                                     <th>Peminjam</th>
-                                    <th>Waktu</th>
+                                    <th>Status</th>
                                     <th>Detail</th>
                                     <th>Aksi</th>
                                 </tr>
@@ -57,22 +57,48 @@
                                 $no = 1;
                             @endphp
                                 @foreach($jadwal as $a)
+                                <tr>
                                     <td>{{$no++}}</td>
                                     <td>{{$a->kode_ruang}}</td>
                                     <td>{{$a->username}}</td>
-                                    <td>{{$a->tgl_pinjam}}</td>
-                                    <td>Detail</td>
+                                    <td>{{$a->status}}</td>
+                                    <td><a href="" class="btn btn-info btn-sm"><span class="fa fa-search"></span>&nbsp;Detail</a></td>
+                                    @if($a->status == 'Belum Disetujui')
                                     <td>
                                         <div class="dropdown">
-                                            <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                            <a class="btn btn-outline-danger dropdown-toggle" href="#" role="button" data-toggle="dropdown">
                                                 <i class="fa fa-ellipsis-h"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#"><i class="fa fa-pencil"></i> Edit</a>
-                                                <a class="dropdown-item" href="#"><i class="fa fa-trash"></i> Hapus</a>
+                                                <a class="dropdown-item" href="{{route('accruang',['id'=>$a->kode_pinjam])}}"><i class="fa fa-check"></i> Disetujui</a>
+                                                <a class="dropdown-item" href="{{route('ruangbtl',['id'=>$a->kode_pinjam])}}"><i class="fa fa-remove"></i> Dibatalkan</a>
                                             </div>
                                         </div>
                                     </td>
+                                    @elseif($a->status == "Setuju")
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-success dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#"><i class="fa fa-remove"></i> Hilangkan dari Daftar</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    @elseif($a->status == "Dibatalkan")
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-danger dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#"><i class="fa fa-remove"></i> Hilangkan dari Daftar</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    @endif
+                                    </tr>
                                 @endforeach
                             </tbody>
                             <tfoot>
@@ -80,7 +106,7 @@
                                     <th>No</th>
                                     <th>Ruang</th>
                                     <th>Peminjam</th>
-                                    <th>Waktu</th>
+                                    <th>Status</th>
                                     <th>Detail</th>
                                     <th>Aksi</th>
                                 </tr>

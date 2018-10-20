@@ -155,8 +155,20 @@ class PenggunaController extends Controller
         ]);
         return redirect()->back();
     }
-
-
+    public function accruang($id)
+    {
+        $update             =   PinjamRuang::where('kode_pinjam',$id)->update([
+            'status'    =>  'Setuju'
+        ]);
+        return redirect()->back();
+    }
+    public function ruangbtl($id)
+    {
+        $update             =   PinjamRuang::where('kode_pinjam',$id)->update([
+            'status'    =>  'Dibatalkan'
+        ]);
+        return redirect()->back();
+    }
     //NON-ADMIN
 
 

@@ -31,7 +31,7 @@
             $('#kalendar').fullCalendar({
             locale: initialLocaleCode,
             schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-            defaultView: 'agendaWeek',
+            defaultView: 'timelineDay',
             defaultDate: '{{date('Y-m-d')}}',
              scrollTime: '05:00',
             // editable: true,
@@ -42,7 +42,7 @@
              header: {
                 left: 'today prev,next',
                 center: 'title',
-                right: 'agendaWeek,month,listWeek'
+                right: 'timelineDay,listDay,month'
             },
             views: {
                 agendaTwoDay: {
@@ -57,7 +57,7 @@
                 @endforeach
             ],
             events: [
-                @foreach($pinjam as $pinjam)
+                @foreach($pinjam->where('status','Setuju') as $pinjam)
                 {id : '{{$pinjam->kode_pinjam}}',resourceId:'{{$pinjam->kode_ruang}}',start:'{{$pinjam->tgl_pinjam}}T{{$pinjam->waktu_mulai}}',end:'{{$pinjam->tgl_pinjam}}T{{$pinjam->waktu_akhir}}',title:'{!!$pinjam->keterangan!!}'},
                 @endforeach
             ],
