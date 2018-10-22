@@ -64,6 +64,7 @@ class PenggunaController extends Controller
             'role'      =>  session('role'),
             'ruang'     =>  Ruang::get(),
             'pinjam'    =>  PinjamRuang::get(),
+            'status'    =>  viewRuang::where('username',session('username'))->get()
         ];
         return view('dashboard/home',$data);
         }
@@ -85,7 +86,24 @@ class PenggunaController extends Controller
         return view('dashboard/ruang',$data);
         }
     }
-
+    public function addJadwal(Request $request)
+    {
+        // dd();
+        $kode_ruang         =   $request['kode'];
+        $tanggal            =   $request['tgl'];
+        $mulai              =   $request['mulai'];
+        $akhir              =   $request['akhir'];
+        PinjamRuang::create([
+            'username'      =>  session('username'),
+            'kode_ruang'    =>  $kode_ruang,
+            'tgl_pinjam'    =>  $tanggal,
+            'waktu_mulai'   =>  $mulai,
+            'waktu_akhir'   =>  $akhir,
+            'keterangan'    =>  $request['kegunaan'].": ".$request['keterangan'],
+            'status'        =>  "Belum Disetujui"
+        ]);
+        return redirect()->back();
+    }
     //Admin
     public function peminjam($token)
     {
@@ -115,7 +133,7 @@ class PenggunaController extends Controller
             'username'  =>  session('username'),
             'role'      =>  session('role'),
             'ruang'     =>  Ruang::get(),
-            'jadwal'    =>  viewRuang::get(),
+            'jadwal'    =>  viewRuang::where('status','NOT LIKE','Trash%')->get(),
 
         ];
         return view('dashboard/admin/jadwal',$data);
@@ -138,24 +156,7 @@ class PenggunaController extends Controller
             return redirect()->back()->with('gagal','Maaf ada kesalahan');
         }
     }
-    public function jadwalAdmin(Request $request)
-    {
-        // dd();
-        $kode_ruang         =   $request['kode'];
-        $tanggal            =   $request['tgl'];
-        $mulai              =   $request['mulai'];
-        $akhir              =   $request['akhir'];
-        PinjamRuang::create([
-            'username'      =>  session('username'),
-            'kode_ruang'    =>  $kode_ruang,
-            'tgl_pinjam'    =>  $tanggal,
-            'waktu_mulai'   =>  $mulai,
-            'waktu_akhir'   =>  $akhir,
-            'keterangan'    =>  $request['kegunaan'].": ".$request['keterangan'],
-            'status'        =>  "Belum Disetujui"
-        ]);
-        return redirect()->back();
-    }
+
     public function accruang($id)
     {
         $update             =   PinjamRuang::where('kode_pinjam',$id)->update([
@@ -170,13 +171,20 @@ class PenggunaController extends Controller
         ]);
         return redirect()->back();
     }
-    //NON-ADMIN
-    public function pinjamRuang(Request $request)
+    public function rmTerima($id)
     {
-        dd($request->all());
+        $update             =   PinjamRuang::where('kode_pinjam',$id)->update([
+            'status'    =>  'Trash Setuju'
+        ]);
+        return redirect()->back();
     }
-
-
+    public function rmBatal($id)
+    {
+        $update             =   PinjamRuang::where('kode_pinjam',$id)->update([
+            'status'    =>  'Trash Dibatalkan'
+        ]);
+        return redirect()->back();
+    }
 
     //API
     public function mahasiswa()

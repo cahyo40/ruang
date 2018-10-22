@@ -17,4 +17,6 @@ Route::get('/home/{token}/ruang','PenggunaController@ruang');
 Route::get('/home/{id}/ruang/acc','PenggunaController@accruang')->name('accruang');
 Route::get('/home/{id}/ruang/btl','PenggunaController@ruangbtl')->name('ruangbtl');
 Route::post('/home/ruang','PenggunaController@ruangAdd')->name('tambahruang');
-Route::post('/home/ruang/jadwwal/admin','PenggunaController@jadwalAdmin')->name('tambahJadwaladmin');
+Route::post('/home/ruang/jadwwal/admin','PenggunaController@addJadwal')->name('tambahJadwal');
+Route::get('/home/jadwal/remove/terima/{id}','PenggunaController@rmTerima')->name('removeTerima');
+Route::get('/home/jadwal/remove/batal/{id}','PenggunaController@rmBatal')->name('removeBatal');

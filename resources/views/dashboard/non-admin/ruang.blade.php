@@ -12,7 +12,7 @@
     </div>
 </div>
 <div class="container-fluid">
-    <form action="" method="post">
+    <form action="{{route('tambahJadwal')}}" method="post">
         <div class="form-group">
             <label>Pilih Ruang Kelas</label>
             <select class="form-control" name="kode" required>

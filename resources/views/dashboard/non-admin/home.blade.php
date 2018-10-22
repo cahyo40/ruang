@@ -10,6 +10,11 @@
         </nav>
     </div>
 </div>
+<div style="margin-top:20px;margin-bottom:40px">
+    @foreach($status as $a)
+        <p>{{$a->status}}</p>
+    @endforeach
+</div>
 <div>
     <div id="kalendar"></div>
 </div>
@@ -28,7 +33,7 @@
             $('#kalendar').fullCalendar({
             locale: initialLocaleCode,
             schedulerLicenseKey: 'GPL-My-Project-Is-Open-Source',
-            defaultView: 'agendaWeek',
+            defaultView: 'month',
             defaultDate: '{{date('Y-m-d',strtotime("+1 day"))}}',
              scrollTime: '05:00',
             // editable: true,

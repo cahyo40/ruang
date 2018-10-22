@@ -82,7 +82,7 @@
                                                 <i class="fa fa-ellipsis-h"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#"><i class="fa fa-remove"></i> Hilangkan dari Daftar</a>
+                                                <a class="dropdown-item" href="{{route('removeTerima',['id'=>$a->kode_pinjam])}}"><i class="fa fa-remove"></i> Hilangkan dari Daftar</a>
                                             </div>
                                         </div>
                                     </td>
@@ -93,7 +93,7 @@
                                                 <i class="fa fa-ellipsis-h"></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-right">
-                                                <a class="dropdown-item" href="#"><i class="fa fa-remove"></i> Hilangkan dari Daftar</a>
+                                                <a class="dropdown-item" href="{{route('removeBatal',['id'=>$a->kode_pinjam])}}"><i class="fa fa-remove"></i> Hilangkan dari Daftar</a>
                                             </div>
                                         </div>
                                     </td>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="tab-pane fade" id="profile2" role="tabpanel">
                     <div class="pd-20">
-                        <form action="{{route('tambahJadwaladmin')}}" method="post">
+                        <form action="{{route('tambahJadwal')}}" method="post">
                             <div class="form-group">
                                 <label>Pilih Ruang Kelas</label>
                                 <select class="form-control" name="kode" required>
