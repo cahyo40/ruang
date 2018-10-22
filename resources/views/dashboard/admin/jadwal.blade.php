@@ -60,7 +60,7 @@
                                 <tr>
                                     <td>{{$no++}}</td>
                                     <td>{{$a->kode_ruang}}</td>
-                                    <td>{{$a->username}}</td>
+                                    <td>{{$a->nama}}</td>
                                     <td>{{$a->status}}</td>
                                     <td><a href="" class="btn btn-info btn-sm"><span class="fa fa-search"></span>&nbsp;Detail</a></td>
                                     @if($a->status == 'Belum Disetujui')

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Pengguna;
 use App\Ruang;
 use App\PinjamRuang;
+use App\viewRuang;
 use Illuminate\Support\Facades\Hash;
 
 class PenggunaController extends Controller
@@ -114,7 +115,7 @@ class PenggunaController extends Controller
             'username'  =>  session('username'),
             'role'      =>  session('role'),
             'ruang'     =>  Ruang::get(),
-            'jadwal'    =>  PinjamRuang::get(),
+            'jadwal'    =>  viewRuang::get(),
 
         ];
         return view('dashboard/admin/jadwal',$data);

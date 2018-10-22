@@ -1,7 +1,9 @@
 <?php
 
 Route::get('/', function () {
+    
     return view('home.index');
+
 });
 Route::get('/login', 'PenggunaController@logins');
 Route::post('/login','PenggunaController@login')->name('prosesLogin');
