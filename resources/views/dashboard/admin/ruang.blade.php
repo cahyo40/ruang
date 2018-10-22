@@ -41,6 +41,10 @@
                             <input name="kode" class="form-control" type="text" placeholder="Kode Ruang Kelas">
                         </div>
                         <div class="form-group">
+                            <label>Warna</label>
+                            <input type="color" class="form-control" name="warna" >
+                        </div>
+                        <div class="form-group">
                             <label>Keterangan</label>
                             <textarea name="keterangan" class="form-control"></textarea>
                         </div>

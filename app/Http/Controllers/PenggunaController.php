@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Pengguna;
 use App\Ruang;
 use App\PinjamRuang;
+use App\viewRuang;
 use Illuminate\Support\Facades\Hash;
 
 class PenggunaController extends Controller
@@ -114,6 +115,8 @@ class PenggunaController extends Controller
             'username'  =>  session('username'),
             'role'      =>  session('role'),
             'ruang'     =>  Ruang::get(),
+            'jadwal'    =>  viewRuang::get(),
+
         ];
         return view('dashboard/admin/jadwal',$data);
         }
@@ -127,6 +130,7 @@ class PenggunaController extends Controller
             $token          =   $request['_token'];
             Ruang::create([
                 'kode_ruang'    =>  $kode_ruang,
+                'warna'         =>  $request['warna'],
                 'keterangan'    =>  $keterangan
             ]);
             return redirect()->back()->with('sukses','Penambahan Ruang Kelas Berhasil');
@@ -152,8 +156,20 @@ class PenggunaController extends Controller
         ]);
         return redirect()->back();
     }
-
-
+    public function accruang($id)
+    {
+        $update             =   PinjamRuang::where('kode_pinjam',$id)->update([
+            'status'    =>  'Setuju'
+        ]);
+        return redirect()->back();
+    }
+    public function ruangbtl($id)
+    {
+        $update             =   PinjamRuang::where('kode_pinjam',$id)->update([
+            'status'    =>  'Dibatalkan'
+        ]);
+        return redirect()->back();
+    }
     //NON-ADMIN
     public function pinjamRuang(Request $request)
     {

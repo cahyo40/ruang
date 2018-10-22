@@ -20,12 +20,12 @@ class DatabaseSeeder extends Seeder
         //     'role'      =>  'admin'
         // ]);
         // Pengguna::create([
-        //     'username'  =>  '21120115120005',
-        //     'nama'      =>  'Ferry Chaerul Landani',
-        //     'email'     =>  'fclandani@student.ce.undip.ac.id',
+        //     'username'  =>  '196310281993031002',
+        //     'nama'      =>  ' Ir. Kodrat Iman Satoto, MT',
+        //     'email'     =>  'kodrat@live.undip.ac.id',
         //     'password'  =>  bcrypt('00000000'),
         //     'status'    =>  'aktif',
-        //     'role'      =>  'mahasiswa'
+        //     'role'      =>  'dosen'
         // ]);
     }
 }

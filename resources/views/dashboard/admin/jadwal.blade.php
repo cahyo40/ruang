@@ -37,16 +37,81 @@
                         Tambah Jadwal Penggunaan Ruang
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#profile3" role="tab" aria-selected="false">
-                        Kelola Jadwal Penggunaan Ruang
-                    </a>
-                </li>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane fade show active" id="home2" role="tabpanel">
                     <div class="pd-20">
-                        <h1>Daftar</h1>
+                        <table id="jdwl" class="table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Ruang</th>
+                                    <th>Peminjam</th>
+                                    <th>Status</th>
+                                    <th>Detail</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @php
+                                $no = 1;
+                            @endphp
+                                @foreach($jadwal as $a)
+                                <tr>
+                                    <td>{{$no++}}</td>
+                                    <td>{{$a->kode_ruang}}</td>
+                                    <td>{{$a->nama}}</td>
+                                    <td>{{$a->status}}</td>
+                                    <td><a href="" class="btn btn-info btn-sm"><span class="fa fa-search"></span>&nbsp;Detail</a></td>
+                                    @if($a->status == 'Belum Disetujui')
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-outline-danger dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="{{route('accruang',['id'=>$a->kode_pinjam])}}"><i class="fa fa-check"></i> Disetujui</a>
+                                                <a class="dropdown-item" href="{{route('ruangbtl',['id'=>$a->kode_pinjam])}}"><i class="fa fa-remove"></i> Dibatalkan</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    @elseif($a->status == "Setuju")
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-success dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#"><i class="fa fa-remove"></i> Hilangkan dari Daftar</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    @elseif($a->status == "Dibatalkan")
+                                    <td>
+                                        <div class="dropdown">
+                                            <a class="btn btn-danger dropdown-toggle" href="#" role="button" data-toggle="dropdown">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right">
+                                                <a class="dropdown-item" href="#"><i class="fa fa-remove"></i> Hilangkan dari Daftar</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    @endif
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Ruang</th>
+                                    <th>Peminjam</th>
+                                    <th>Status</th>
+                                    <th>Detail</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </tfoot>
+                        </table>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="profile2" role="tabpanel">
@@ -86,13 +151,36 @@
                         </form>
                     </div>
                 </div>
-                <div class="tab-pane fade" id="profile3" role="tabpanel">
-                    <div class="pd-20">
-                        <h1>Kelola</h1>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+@endsection
+@section('css')
+    <link rel="stylesheet" type="text/css" href="{{url('dashboard/src/plugins/datatables/media/css/jquery.dataTables.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url('dashboard/src/plugins/datatables/media/css/dataTables.bootstrap4.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url('dashboard/src/plugins/datatables/media/css/responsive.dataTables.css')}}">
+@endsection
+@section('script')
+	<script src="vendors/scripts/script.js"></script>	<script src="{{url('dashboard/src/plugins/datatables/media/js/jquery.dataTables.min.js')}}"></script>
+	<script src="{{url('dashboard/src/plugins/datatables/media/js/dataTables.bootstrap4.js')}}"></script>
+	<script src="{{url('dashboard/src/plugins/datatables/media/js/dataTables.responsive.js')}}"></script>
+	<script src="{{url('dashboard/src/plugins/datatables/media/js/responsive.bootstrap4.js')}}"></script>
+    <script>
+        $(document).ready( function () {
+            $('#jdwl').DataTable({
+                scrollCollapse: true,
+                autoWidth: false,
+                responsive: true,
+            });
+        } );
+        $(document).ready( function () {
+            $('#jdwled').DataTable({
+                scrollCollapse: true,
+                autoWidth: false,
+                responsive: true,
+            });
+        } );
+    </script>
 @endsection
