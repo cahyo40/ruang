@@ -155,7 +155,10 @@ class PenggunaController extends Controller
 
 
     //NON-ADMIN
-
+    public function pinjamRuang(Request $request)
+    {
+        dd($request->all());
+    }
 
 
 
