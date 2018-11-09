@@ -105,6 +105,10 @@ class PenggunaController extends Controller
         return redirect()->back();
     }
     //Admin
+
+
+
+
     public function peminjam($token)
     {
         if($token != csrf_token()){
@@ -187,6 +191,11 @@ class PenggunaController extends Controller
     }
 
     //API
+
+
+
+
+    
     public function mahasiswa()
     {
         $mahasiswa  =   Pengguna::where('role','mahasiswa')->get();

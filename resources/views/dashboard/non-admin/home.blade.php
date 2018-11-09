@@ -59,7 +59,9 @@
                 @endforeach
             ],
             events: [
-                { id: '5', resourceId: 'D.304', start: '2018-10-07T10:20', end: '2018-10-07T12:00', title: 'Kuliah Tapi Minggu' }
+                @foreach($pinjam->where('status','Setuju') as $pinjam)
+                    {id : '{{$pinjam->kode_pinjam}}',resourceId:'{{$pinjam->kode_ruang}}',start:'{{$pinjam->tgl_pinjam}}T{{$pinjam->waktu_mulai}}',end:'{{$pinjam->tgl_pinjam}}T{{$pinjam->waktu_akhir}}',title:'{!!$pinjam->keterangan!!}'},
+                @endforeach
             ],
             });
         });
